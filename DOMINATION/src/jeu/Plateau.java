@@ -11,10 +11,9 @@ public class Plateau {
 	private List<Tuiles> dominos;
 	private Tuiles dominoChoisi;
 	private Case[][] plateauJoueur = new Case[10][10];
-	private int totalBoardScore = 0;
-	Case[][] testBoard = new Case[10][10];
+	private int totalScoreBoard = 0;
+	// Case[][] testBoard = new Case[10][10];
 
-	// Le plateau du début est en 10*10 avec le chateau au milieu 
 	
 	public Plateau() {
 		for (int i = 0; i < 9; i++) {
@@ -28,60 +27,9 @@ public class Plateau {
 		}
 	}
 
-//	//Test de generation dun terrain aleatoire pour points.
-//	public Case giveRandDomino() {
-//		Random rand = new Random();
-//		Case s;
-//		int n = rand.nextInt(31) + 1;
-//		int ca = rand.nextInt(3);
-//		if (n <= 5) {
-//			s = new Case(TerrainType.PRAIRIE);
-//		} else if (n > 5 && n <= 10) {
-//			s = new Case(TerrainType.MINE);
-//		} else if (n > 10 && n <= 15) {
-//			s = new Case(TerrainType.MER);
-//		} else if (n > 15 && n <= 20) {
-//			s = new Case(TerrainType.MONTAGNE);
-//		} else if (n > 20 && n <= 25) {
-//			s = new Case(TerrainType.CHAMPS);
-//		} else if (n > 25 && n <= 30) {
-//			s = new Case(TerrainType.FORET);
-//		} else {
-//			s = new Case(TerrainType.BLANK);
-//		}
-//		s.setCouronnes(ca);
-//
-//		return s;
-//
-//	}
-
-//	//T
-//	public void populateRandomBoard() {
-//
-//		for (int i = 0; i < 9; i++) {
-//			for (int j = 0; j < 9; j++) {
-//
-//				if (j < 2 || j > 6 || i < 2 || i > 6) {
-//					plateauJoueur[j][i] = new Case(TerrainType.BLANK);
-//				} else if ((i == 4) && (j == 4)) {
-//					plateauJoueur[j][i] = new Case(TerrainType.CHATEAU);
-//				} else if (i < 4 && i > 1) {
-//
-//					plateauJoueur[j][i] = giveRandDomino();
-//
-//				} else if (i > 4 && i < 7) {
-//					plateauJoueur[j][i] = giveRandDomino();
-//
-//				}
-//
-//			}
-//		}
-//		plateauJoueur[2][4] = giveRandDomino();
-//		plateauJoueur[3][4] = giveRandDomino();
-//		plateauJoueur[5][4] = giveRandDomino();
-//		plateauJoueur[6][4] = giveRandDomino();
-//
-//	}
+//	//Test de generation dun terrain aleatoire (na jamais marché)
+	
+	List<Case> laZone = new ArrayList<Case>();
 
 
 	public boolean inoccupé(int x, int y) {
@@ -122,22 +70,21 @@ public class Plateau {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (j > minX + 4) {
-					plateauJoueur[j][i] = new Case(TerrainType.OUTOFBOUNDS);
+					plateauJoueur[j][i] = new Case(TerrainType.HORSMAP);
 				}
 				if (j < maxX - 4) {
-					plateauJoueur[j][i] = new Case(TerrainType.OUTOFBOUNDS);
+					plateauJoueur[j][i] = new Case(TerrainType.HORSMAP);
 				}
 				if (i > minY + 4) {
-					plateauJoueur[j][i] = new Case(TerrainType.OUTOFBOUNDS);
+					plateauJoueur[j][i] = new Case(TerrainType.HORSMAP);
 				}
 				if (i < maxY - 4) {
-					plateauJoueur[j][i] = new Case(TerrainType.OUTOFBOUNDS);
+					plateauJoueur[j][i] = new Case(TerrainType.HORSMAP);
 				}
 			}
 		}
 	}
 
-	List<Case> laZone = new ArrayList<Case>();
 
 	public void trouverZone(int x, int y) {
 
@@ -181,16 +128,16 @@ public class Plateau {
 	public void scoreAZone(int x, int y) {
 
 		trouverZone(x, y);
-		int numCouronnes = 0;
+		
+		int nbCouronnes = 0;
+		
+		
 		for (int i = 0; i < laZone.size(); i++) {
-			numCouronnes += laZone.get(i).getCouronnes();
+			nbCouronnes += laZone.get(i).getCouronnes();
 		}
-		totalBoardScore += (laZone.size() * numCouronnes);
+		totalScoreBoard += (laZone.size() * nbCouronnes);
+		
 		laZone = new ArrayList<Case>();
-		// System.out.print(" " + numCrowns + " ");
-		// System.out.print(laZone.size());
-
-		// System.out.print("Scored");
 
 	}
 
@@ -202,7 +149,7 @@ public class Plateau {
 			}
 		}
 
-		System.out.print(totalBoardScore);
+		System.out.print(totalScoreBoard);
 	}
 
 	public void affichePlateau() {
@@ -231,7 +178,7 @@ public class Plateau {
 		dominos.add(domino);
 	}
 	
-	public void setDominoChoisi(Tuiles chosenDomino) {
-		this.dominoChoisi = chosenDomino;
+	public void setDominoChoisi(Tuiles dominoChoisi) {
+		this.dominoChoisi = dominoChoisi;
 	}
 }

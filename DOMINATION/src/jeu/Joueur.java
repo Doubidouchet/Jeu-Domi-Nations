@@ -17,14 +17,16 @@ public class Joueur {
 		String entete;
 		boolean validXYChoice = false;
 		TuilesGestion lePlacement;
+		
 		// QUAND ON DEMANDE LA POSITION X ON PLACE LA CASE DE DROITE PAR EXEMPLE
 		// SI LA TUILE C F0 C0 LE X Y VA PLACER C0 ENSUITE LORIENTATION
 		// CEST LE F0 QUI VA ENTRE EN HAUT EN BAS A GAUCHE A DROITE (NORD SUD EST OUEST)
 		// On demande jusque ce soit bon
+		
 		while (!validXYChoice) {
 			x = JeuMessage.recupereInt("Donnez la coordonn�e en X");
 			y = JeuMessage.recupereInt("Donnez la coordonn�e en Y");
-			if (inoccup�(x, y)) {
+			if (inoccupe(x, y)) {
 				System.out.println("Vous avez choisi une bonne position XY !");
 				validXYChoice = true;
 			} else {
@@ -33,9 +35,8 @@ public class Joueur {
 		}
 		System.out.print("Choisissez l'orientation");
 	
-			entete = JeuMessage.recupereString("Entrez une orientation N, S ,E ou O. Entrez I si le domino est impla�able");
+		entete = JeuMessage.recupereString("Entrez une orientation N, S ,E ou O. Entrez I si le domino est impla�able");
 			
-		
 		lePlacement = new TuilesGestion(x, y, aPlacer, entete);
 		return lePlacement;
 
@@ -44,6 +45,7 @@ public class Joueur {
 	// 
 	
 	public void faireTour(Tuiles dominoChoisi) {
+		
 		boolean bonChoix;
 		TuilesGestion placementActuel;
 		plateau.setPlateauBordure();
@@ -111,7 +113,7 @@ public class Joueur {
 
 	// Cette fonction sert a verifier si une tuile n'est pas deja la a lendroit voulu
 	
-	public boolean inoccup�(int x, int y) {
+	public boolean inoccupe(int x, int y) {
 		if (plateau.getPlateauJoueur()[x][y].getNom() != ":") {
 
 			return false;
@@ -132,7 +134,7 @@ public class Joueur {
 		// les cases adjacente sans inclure la CaseGauche
 		switch (entete) {
 		case "S":
-			for (int i = -1; i <= 1; i += 2) {
+			for (int i = -1; i <= 1; i = i+2) {
 				if (verifieTerrainAdjacent(x + i, y, aPlacer) || verifieTerrainAdjacent(x, y + 1, aPlacer)) {
 					return true;
 				} else if (verifieTerrainAdjacent(x + i, y - 1, aPlacer)
@@ -187,24 +189,24 @@ public class Joueur {
 		String entete = lePlacement.entete;
 		switch (entete) {
 		case "S":
-			if (terrainAdjacentCorrespond(lePlacement) && inoccup�(x, y - 1))
+			if (terrainAdjacentCorrespond(lePlacement) && inoccupe(x, y - 1))
 				return true;
 			else {
 
 				return false;
 			}
 		case "N":
-			if (terrainAdjacentCorrespond(lePlacement) && inoccup�(x, y + 1))
+			if (terrainAdjacentCorrespond(lePlacement) && inoccupe(x, y + 1))
 				return true;
 			else
 				return false;
 		case "E":
-			if (terrainAdjacentCorrespond(lePlacement) && inoccup�(x - 1, y))
+			if (terrainAdjacentCorrespond(lePlacement) && inoccupe(x - 1, y))
 				return true;
 			else
 				return false;
 		case "O":
-			if (terrainAdjacentCorrespond(lePlacement) && inoccup�(x + 1, y))
+			if (terrainAdjacentCorrespond(lePlacement) && inoccupe(x + 1, y))
 				return true;
 			else
 				return false;

@@ -12,7 +12,7 @@ import jeu.Case.TerrainType;
 
 //public class TuilesExtract {
 //
-//    public static void main(String[] args) {
+//    public static void Main(String[] args) {
 //        ArrayList<Tuile> tuilesDoc = tuilesdoc();
 //        System.out.println(tuilesDoc);
 //    }

@@ -17,7 +17,7 @@ public class JoueurTour {
 	}
 	
 	public void setRsvPlateau(){
-
+		// on creer la reserve
 		for (int i = 0; i < rsvPlateau.length; i++){
 			rsvPlateau[i] = donneRandomDomino();
 		}

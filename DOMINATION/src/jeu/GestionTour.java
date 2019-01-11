@@ -14,7 +14,7 @@ public class GestionTour {
 	int[] turnOrder;
 	int turnIncrement = 0;
 	int leChoix;
-	// Cette fonction demande le nmobre de joueurs dans la partie
+	// Cette fonction demande le nombre de joueurs dans la partie
 	// Si le choix n'est pas entre 2 et 4, la fonction se relance
 	// Et ils ont a choisir de nouveau
 
@@ -27,24 +27,22 @@ public class GestionTour {
 
 		}
 		lesJoueurs = new Joueur[nbJoueur];
+		//ajout joueur
 		for (int i = 0; i < lesJoueurs.length; i++) {
 			lesJoueurs[i] = new Joueur();
 
 		}
+		// init nb de tour selon les joueurs
 		turnOrder = new int[nbJoueur];
+		
 		for (int i = 0; i < turnOrder.length; i++) {
 			turnOrder[i] = i;
 		}
 		leTour.choixDuTour(nbJoueur);
 	}
-	
-
-	public void faireNouvellePartie() {
-		setNbJoueur();
-		boucleDesTours();
-	}
 
 	public void printLeTour() {
+		
 		for (int i = 0; i < leTour.getRsvPlateau().length; i++) {
 			leTour.getRsvPlateau()[i].printADomino();
 		}
@@ -56,13 +54,11 @@ public class GestionTour {
 	
 	public Tuiles chooseADomino() {
 
-		boolean bonChoix = false;
 		printLeTour();
 		System.out.print("Quel domino voudrais tu choisir?");
 		while (leChoix < 1 || leChoix > leTour.getRsvPlateau().length) {
 
 			leChoix = JeuMessage.recupereInt("Entrez 1 pour le domino du haut, 2 pour le domino du bas, etc..");
-
 			try {
 				if (!leTour.getRsvPlateau()[leChoix - 1].estChoisi()) {
 					leTour.getRsvPlateau()[leChoix - 1].setChoisi();
@@ -91,13 +87,14 @@ public class GestionTour {
 		}
 		leTour.setRsvPlateau();
 
-		faireTheTour();
+		faireLeTour();
 		turnIncrement = 0;
 
 	}
 
 	// iNDIQUE LE TOUR DE LA PERSONNE DANS LORDRE
-	public void faireTheTour() {
+	public void faireLeTour() {
+		
 		for (int i = 0; i < turnOrder.length; i++) {
 			System.out.println("Tour du joueur" + (turnOrder[i] + 1));
 			lesJoueurs[turnOrder[i]].faireTour(chooseADomino());
@@ -106,7 +103,7 @@ public class GestionTour {
 
 	}
 
-	// Cette boucle lance les 12 tours a la suite (nombre de tour dune partie de domination)
+	// Cette boucle lance les tours a la suite 
 	public void boucleDesTours() {
 
 		for (int i = 0; i < 12; i++) {
@@ -118,13 +115,10 @@ public class GestionTour {
 
 	}
 
-	public static void main(String[] args) {
-		GestionTour x = new GestionTour();
-
-		x.faireNouvellePartie();
-
-		// TODO Auto-generated method stub
-
+	public void faireNouvellePartie() {
+		setNbJoueur();
+		boucleDesTours();
 	}
+
 
 }
