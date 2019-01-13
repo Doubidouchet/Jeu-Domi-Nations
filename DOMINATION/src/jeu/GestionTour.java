@@ -21,7 +21,7 @@ public class GestionTour {
 	public void setNbJoueur() {
 
 		while (nbJoueur < 2 || nbJoueur > 4) {
-			System.out.print("A combien de joueur voulez vous joué ? ");
+			System.out.print("A combien de joueur voulez vous jouer ? ");
 
 			nbJoueur = JeuMessage.recupereInt("Vous pouvez être entre 2 et 4 joueurs");
 
