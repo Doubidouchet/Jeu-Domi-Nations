@@ -24,18 +24,18 @@ public class Joueur {
 		// On demande jusque ce soit bon
 		
 		while (!validXYChoice) {
-			x = JeuMessage.recupereInt("Donnez la coordonn�e en X");
-			y = JeuMessage.recupereInt("Donnez la coordonn�e en Y");
+			x = JeuMessage.recupereInt("Donnez le numéro de colonne sur lequel vous voulez placez votre domino");
+			y = JeuMessage.recupereInt("Donnez le numéro de ligne sur lequel vous voulez placez votre domino");
 			if (inoccupe(x, y)) {
-				System.out.println("Vous avez choisi une bonne position XY !");
+				System.out.println("Vous avez choisi une bonne position !");
 				validXYChoice = true;
 			} else {
-				System.out.println("Ce lieu est d�ja occup�, veuillez en choisir un nouveau");
+				System.out.println("Il existe déjà un domino à cette position, veuillez choisir une nouvelle position");
 			}
 		}
-		System.out.print("Choisissez l'orientation");
+		System.out.print("Choisissez l'orientation de votre domino");
 	
-		entete = JeuMessage.recupereString("Entrez une orientation N, S ,E ou O. Entrez I si le domino est impla�able");
+		entete = JeuMessage.recupereString("Entrez une orientation N, S ,E ou O. Entrez I si le domino est implaçable");
 			
 		lePlacement = new TuilesGestion(x, y, aPlacer, entete);
 		return lePlacement;
@@ -68,7 +68,7 @@ public class Joueur {
 					bonChoix = true;
 
 				} else {
-					System.out.println("Vous ne pouvez pas placer la tuile ici");
+					System.out.println("Vous ne pouvez pas mettre votre domino ici");
 
 				}
 			}
@@ -142,7 +142,7 @@ public class Joueur {
 					return true;
 				}
 			}
-			System.out.println("Le terrain ne correspond pas, veuillez r�essayer.");
+			System.out.println("Le terrain adjacent ne correspond pas, veuillez réessayer.");
 			break;
 		case "N":
 			for (int i = -1; i <= 1; i += 2) {
@@ -153,7 +153,7 @@ public class Joueur {
 					return true;
 				}
 			}
-			System.out.println("Le terrain ne correspond pas, veuillez r�essayer.");
+			System.out.println("Le terrain adjacent ne correspond pas, veuillez réessayer.");
 			break;
 		case "E":
 			for (int i = -1; i <= 1; i += 2) {
@@ -164,7 +164,7 @@ public class Joueur {
 					return true;
 				}
 			}
-			System.out.println("Le terrain ne correspond pas, veuillez r�essayer.");
+			System.out.println("Le terrain adjacent ne correspond pas, veuillez réessayer.");
 			break;
 		case "O":
 			for (int i = -1; i <= 1; i += 2) {
@@ -175,7 +175,7 @@ public class Joueur {
 					return true;
 				}
 			}
-			System.out.println("Le terrain ne correspond pas, veuillez r�essayer.");
+			System.out.println("Le terrain adjacent ne correspond pas, veuillez réessayer.");
 			break;
 		}
 		return false;
