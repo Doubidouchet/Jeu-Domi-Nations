@@ -44,9 +44,9 @@ public class JoueurTour {
 		
 		while (trouvé) {
 			int rdom = new Random().nextInt(reserve.length() - 1);
-			if (reserve.getUnplayed()[rdom].getJoué() == false) {
-				leTour = reserve.getUnplayed()[rdom];
-				reserve.getUnplayed()[rdom].setJoué();
+			if (reserve.nonJoue()[rdom].getJoué() == false) {
+				leTour = reserve.nonJoue()[rdom];
+				reserve.nonJoue()[rdom].setJoué();
 				trouvé = false;
 			}
 		}

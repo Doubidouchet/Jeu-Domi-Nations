@@ -153,7 +153,7 @@ public class TuilesExtract {
 
 	// getter pour les dominos nonjoué
 	
-	public Tuiles[] getUnplayed() {
+	public Tuiles[] nonJoue() {
 		return dominoNonJoue;
 	}
 
