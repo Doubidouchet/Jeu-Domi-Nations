@@ -21,9 +21,9 @@ public class GestionTour {
 	public void setNbJoueur() {
 
 		while (nbJoueur < 2 || nbJoueur > 4) {
-			System.out.print("Combien de Joueurs?");
+			System.out.print("A combien de joueur voulez vous jouÃ© ? ");
 
-			nbJoueur = JeuMessage.recupereInt("Vous pouvez être 2, 3, ou 4.");
+			nbJoueur = JeuMessage.recupereInt("Vous pouvez Ãªtre entre 2 et 4 joueurs");
 
 		}
 		lesJoueurs = new Joueur[nbJoueur];
@@ -50,12 +50,12 @@ public class GestionTour {
 
 	// Cette fonction retourne le domino choisi par le joueur encours 
 	
-	// Si il tente de prendre un domino deja choisi, on lui redemande de choisir et il reçoit un message derreur
+	// Si il tente de prendre un domino deja choisi, on lui redemande de choisir et il reÃ§oit un message derreur
 	
 	public Tuiles chooseADomino() {
 
 		printLeTour();
-		System.out.print("Quel domino voudrais tu choisir?");
+		System.out.print("Parmis ces dominos, lequel voudrais tu choisir?");
 		while (leChoix < 1 || leChoix > leTour.getRsvPlateau().length) {
 
 			leChoix = JeuMessage.recupereInt("Entrez 1 pour le domino du haut, 2 pour le domino du bas, etc..");
@@ -64,7 +64,7 @@ public class GestionTour {
 					leTour.getRsvPlateau()[leChoix - 1].setChoisi();
 
 				} else {
-					System.out.print("Ce domino est déjà choisi par un joueur, prenez en un autre.");
+					System.out.print("Ce domino est dÃ©jÃ  choisi par un joueur, prenez en un autre.");
 					leChoix = 0;
 
 				}
